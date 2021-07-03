@@ -6,7 +6,7 @@ import Prismic from '@prismicio/client'
 import SideBar from '../components/SideBar'
 import WhatIKnow from '../components/WhatIKnow/WhatIKnow'
 import WhoIam from '../components/WhoIam/WhoIam'
-import { getPrismicClient } from './services/prismic'
+import { getPrismicClient } from '../components/services/prismic'
 import WhatIDid from '../components/WhatIDid/WhatIDid'
 import ContactMe from '../components/ContactMe/ContactMe';
 
