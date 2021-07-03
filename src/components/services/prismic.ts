@@ -3,7 +3,7 @@
 import Prismic from '@prismicio/client'
 
 
-export default function getPrismicClient(req?:unknown) {
+export  function getPrismicClient(req?:unknown) {
 
 
     const prismic = Prismic.client(
