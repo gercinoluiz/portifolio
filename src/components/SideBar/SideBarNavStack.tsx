@@ -1,4 +1,4 @@
-import { VStack, Grid, Box, Icon, Flex, Divider, Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, Input, GridItem } from "@chakra-ui/react";
+import { VStack, Grid, Box, Icon, Flex, Divider, Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, Input, GridItem, Text } from "@chakra-ui/react";
 import React from "react";
 import { BsCodeSlash, BsListCheck } from "react-icons/bs";
 import { SiAboutDotMe } from "react-icons/si";
@@ -8,15 +8,65 @@ import { ImLinkedin } from "react-icons/im";
 import { FaGithub } from "react-icons/fa";
 import { RiMailSendFill } from "react-icons/ri";
 import pallete from "../../../styles/palette";
+import * as yup from 'yup'
+
+
+import { useFormik } from "formik";
 
 
 import SideBarNavItem from "./SideBarNavItem";
+import { FormEvent } from "react";
+import { UseFormHandleSubmit } from "react-hook-form";
+import api from "../services/api";
 
 
+const submitMessageFormValidator = yup.object().shape({
+
+
+    name: yup.string().required('Name required'),
+    email: yup.string().email('Please, provide an valid email').required('Email required'),
+    mesage: yup.string().required('Message required'),
+
+
+
+
+
+
+
+
+})
 
 export default function SideBarNavStack() {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
+
+    const formik = useFormik({
+
+
+
+        initialValues: {
+            name: '',
+            email: '',
+            mesage: '',
+
+        },
+
+        validationSchema: submitMessageFormValidator,
+
+        onSubmit: async ({ name, email, mesage }, { resetForm }) => {
+
+
+
+            await api.post('/mail', {
+                name,
+                email,
+                mesage
+            })
+
+
+        }
+    }
+    )
 
 
     return (
@@ -27,12 +77,12 @@ export default function SideBarNavStack() {
             <SideBarNavItem icon={SiAboutDotMe} title='Who I am' link='#WhoIam' />
 
 
-            <SideBarNavItem icon={BsCodeSlash}  title='What I know' link='#WhatIKnow' />
+            <SideBarNavItem icon={BsCodeSlash} title='What I know' link='#WhatIKnow' />
 
 
-            <SideBarNavItem icon={BsListCheck}  title='I what I did' link='#WhatIDid' />
+            <SideBarNavItem icon={BsListCheck} title='I what I did' link='#WhatIDid' />
 
-            <SideBarNavItem icon={RiFilePaper2Line}  title='CV' link='https://prismic-io.s3.amazonaws.com/gercino-portifolio/4f6cfa50-388f-433f-8715-482f9cd29c05_cv.pdf' />
+            <SideBarNavItem icon={RiFilePaper2Line} title='CV' link='https://prismic-io.s3.amazonaws.com/gercino-portifolio/4f6cfa50-388f-433f-8715-482f9cd29c05_cv.pdf' />
 
 
 
@@ -61,41 +111,81 @@ export default function SideBarNavStack() {
 
                 <Modal isOpen={isOpen} onClose={onClose}>
                     <ModalOverlay />
-                    <ModalContent>
+                    <ModalContent w='95%'>
                         <ModalHeader>Get in Contact</ModalHeader>
-                        <ModalCloseButton />
-                        <ModalBody>
-                            <Flex>
+                        <ModalCloseButton  />
+
+
+
+
+                        <Flex direction='column' >
+
+                            <ModalBody>
+
                                 <Grid templateColumns="repeat(2, 1fr)" w='100%' gap={2}>
                                     <GridItem>
-                                        <Input placeholder='Name' />
+                                        <Input
+                                            placeholder='Name'
+                                            onChange={formik.handleChange('name')}
+                                            value={formik.values.name}
+                                        />
+
+                                        {formik.errors &&
+                                            <Text fontSize='10' color='red.400' >{formik.errors.name}</Text>
+                                        }
+
                                     </GridItem>
                                     <GridItem>
-                                        <Input placeholder='E-mail' />
+                                        <Input placeholder='E-mail'
+                                            onChange={formik.handleChange('email')}
+                                            value={formik.values.email}
+                                        />
+
+                                        {formik.errors &&
+                                            <Text fontSize='10' color='red.400' >{formik.errors.email}</Text>
+                                        }
+
 
                                     </GridItem>
 
                                     <GridItem colSpan={2}>
-                                        <Input placeholder='Message' h='28' borderRadius={8} />
+                                        <Input
+
+                                            placeholder='Message'
+                                            h='28'
+                                            borderRadius={8}
+                                            onChange={formik.handleChange('mesage')}
+                                            value={formik.values.mesage} />
+
+                                        {formik.errors &&
+                                            <Text fontSize='10' color='red.400' >{formik.errors.mesage}</Text>
+                                        }
+
 
                                     </GridItem>
 
                                 </Grid>
-                            </Flex>
-                          
-                        </ModalBody>
+                            </ModalBody>
 
-                        <ModalFooter>
-                            <Button mr={3} onClick={onClose}>
-                                Close
-                            </Button>
-                            <Button colorScheme="blue" >Message me</Button>
-                        </ModalFooter>
+                            <ModalFooter>
+                                <Button mr={3} onClick={onClose}>
+                                    Close
+                                </Button>
+                                <Button onClick={() => formik.handleSubmit()} colorScheme="blue" >Message me</Button>
+                            </ModalFooter>
+                        </Flex>
+
+
+
+
+
+
+
                     </ModalContent>
                 </Modal>
             </Flex>
 
-        </VStack>
+        </VStack >
     )
 
 }

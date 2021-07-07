@@ -19,3 +19,27 @@ interface ICMSProps {
     icons: IIcons[],
     projects: IProjects[]
 }
+
+interface IMessage {
+    name: string;
+    mesage: string;
+    mail: string
+}
+
+
+
+
+interface IRequest {
+
+    body: {
+
+        name: string,
+        email: string,
+        mesage: string
+    }
+
+
+
+}
+
+

@@ -63,29 +63,38 @@ const WhatIDid: React.FC<WhatIDidProps> = ({ projects }: WhatIDidProps) => {
 
                         return (
 
-                            <Center  >
-                                <Flex mb='10' id='GridItem'  flexDir='column' justify='center' minW='20rem' alignItems='center' borderWidth={1} rounded='2xl' boxShadow='0 4px 8px 0 rgba(0,0,0,0.2)' _hover={{
+                            <Center key={project.slug} >
+
+
+
+                                <Flex mb='10' id='GridItem' maxH='480px' flexDir='column' minW='20rem' alignItems='center' borderWidth={1} rounded='2xl' boxShadow='0 4px 8px 0 rgba(0,0,0,0.2)' _hover={{
                                     boxShadow: '0 8px 16px 0 rgba(0,0,0,0.2)'
                                 }}>
                                     <Image
                                         alt={project.slug}
-                                        boxSize='240px'
+                                        boxSize='250px'
                                         objectFit='contain'
                                         src={project.image}
 
+                                        align='bottom'
+                                        alignItems='flex-end'
+                                        
+                                        
                                     />
 
-                                    <Text fontSize='22' fontWeight='bold' >
+                                    <Text fontSize='22' fontWeight='bold'  mb='4' mt='4'   >
                                         {project.project}
 
                                     </Text>
-                                    <Flex justify='center' align='center' textAlign='center' p='4'>
+                                    <Flex justify='center' maxH='100px' align='center' textAlign='center' p='4'>
 
 
                                         <Text>{project.description}</Text>
 
 
                                     </Flex>
+
+                                    <Text ml='auto' mr='4' mb='2' fontWeight='bold' color='blue.500' >MORE</Text>
                                 </Flex>
                             </Center>
                         )

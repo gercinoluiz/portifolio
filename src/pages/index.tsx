@@ -57,19 +57,21 @@ export default function Home({ icons, projects }: ICMSProps) {
             <>
               <Icon h='12' w='12' position='absolute' onClick={onOpen} as={BiMenu} />
 
-              <Flex w='40%'  >
+              
                 <Drawer
 
 
                   isOpen={isOpen}
                   placement='left'
                   onClose={onClose}
-                  size='xs'
+                  size='full'
+                  
 
 
                 >
                   <DrawerOverlay onClick={onClose} />
-                  <DrawerContent backgroundColor='transparent' >
+                  <DrawerContent bg='transparent' >
+                  <DrawerCloseButton color='white' textDecoration='none' />
 
 
 
@@ -81,7 +83,7 @@ export default function Home({ icons, projects }: ICMSProps) {
 
                 </Drawer>
 
-              </Flex>
+              
             </>
           )
 
@@ -126,7 +128,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const responseProjects = await prismic.query(Prismic.predicates.at('document.type', 'myprojects'))
 
 
-  console.log(JSON.stringify(responseProjects, null, 2))
+  // console.log(JSON.stringify(responseProjects, null, 2))
 
 
   const icons = responseIcons.results.map(icon => {
@@ -151,7 +153,7 @@ export const getStaticProps: GetStaticProps = async () => {
   })
 
 
-  console.log({ projects })
+  // console.log({ projects })
 
   return {
     props: {

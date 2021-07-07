@@ -22,10 +22,10 @@ const WhoIam: React.FC<WhoIamProps> = () => {
     })
 
     const isLargeText = useBreakpointValue({
-        base: '2xl',
-        lg: '2xl',
-        sm: 'md',
-        md: 'lx',
+        base: '1rem',
+        lg: '2rem',
+        sm: '1rem',
+        md: '2',
 
     })
 
@@ -49,18 +49,18 @@ const WhoIam: React.FC<WhoIamProps> = () => {
                     src="https://avatars.githubusercontent.com/u/59139354?v=4"
                 />
 
-                <Flex ml='4' mt='6' mb='10' direction='column' >
-                    <Text direction='row' fontSize='2xl'>
+                <Flex ml='4' mt='6' mb='10' textAlign='center' fontSize={isLargeText}  direction='column' >
+                    <Text direction='row'  >
                         Hello, I'm <Text as='span' fontWeight='bold'>Gercino</Text> <Text as='span' fontWeight='bold' color='pink.500'>L</Text>uiz.
 
 
                     </Text>
 
-                    <Text fontSize='lg'>
-                        N<Text as='span' fontWeight='bold' color='pink.500'>o</Text>w I'm a Full-Stack De<Text as='span' fontWeight='bold' color='pink.500'>v</Text>eloper
+                    <Text fontSize={isLargeText} >
+                        N<Text as='span' fontSize={isLargeText} fontWeight='bold' color='pink.500'>o</Text>w I'm a Full-Stack De<Text as='span' fontWeight='bold' color='pink.500'>v</Text>eloper
                     </Text>
 
-                    <Text fontSize='lg'>
+                    <Text fontSize={isLargeText}>
                         I'll chang<Text as='span' fontWeight='bold' color='pink.500'>e</Text> the world through my code 😎
 
                     </Text>

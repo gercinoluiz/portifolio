@@ -28,11 +28,11 @@ const WhatIKnow: React.FC<WhatIKnowProps> = ({ icons }: WhatIKnowProps) => {
 
 
 
-    const isLargeAvatar = useBreakpointValue({
-        base: '64',
-        lg: '17rem',
-        sm: '12rem',
-        md: '14rem',
+    const isLargeIcon = useBreakpointValue({
+        base:'80px',
+        lg: '120px',
+        sm: '80rem',
+        md: '110rem',
 
     })
 
@@ -57,7 +57,7 @@ const WhatIKnow: React.FC<WhatIKnowProps> = ({ icons }: WhatIKnowProps) => {
 
 
             <Flex w='100%' id='MainFlex'  alignItems='center' justify='center'>
-                <SimpleGrid   columns={[1, 3, 6,]}  justifyContent='center' gap={6}>
+                <SimpleGrid   columns={[2, 3, 6,]}  justifyContent='center' gap={6}>
 
 
                     {
@@ -66,11 +66,12 @@ const WhatIKnow: React.FC<WhatIKnowProps> = ({ icons }: WhatIKnowProps) => {
                             return (
 
                                 
-                                    <Flex h='40'  minW='90px' flexDir='column' alignItems='center'  justifyContent='center'>
+                                    <Flex flexDir='column' alignItems='center' key={icon.slug}  justifyContent='center'>
                                         <Image
                                             alt={icon.slug}
-                                            boxSize='120px'
+                                            
                                             objectFit='contain'
+                                            boxSize={isLargeIcon}
                                             src={icon.image}
                                         />
 

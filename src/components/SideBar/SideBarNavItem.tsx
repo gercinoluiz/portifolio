@@ -35,7 +35,7 @@ export default function SideBarNavItem({ title, icon, link, onClick }: SideBarNa
                 textDecoration:'none'
             }} >
 
-                <Flex  as='button' id='IconFlex' alignItems='center' justifyContent='center' flexDir='column' onClick={onClick}>
+                <Flex  as='button' id='IconFlex' alignItems='center' p='2' justifyContent='center' flexDir='column' onClick={onClick}>
                     <Icon id='Icon' as={icon} h='40px' w='40px'  />
 
 
