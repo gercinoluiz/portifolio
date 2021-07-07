@@ -1,7 +1,9 @@
 import nodemailler from 'nodemailer'
 import SMTPTransport from 'nodemailer/lib/smtp-transport'
 
-export default async (req: IRequest, res: Response) => {
+
+
+export default async (req: IRequest, res) => {
 
     interface Transporter {
         host: string
@@ -31,6 +33,8 @@ export default async (req: IRequest, res: Response) => {
             text: body.mesage
 
         })
+
+        return res.status(200)
 
     } catch (error) {
         console.log({ error })

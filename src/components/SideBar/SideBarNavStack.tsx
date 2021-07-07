@@ -10,6 +10,8 @@ import { RiMailSendFill } from "react-icons/ri";
 import pallete from "../../../styles/palette";
 import * as yup from 'yup'
 
+import { useToast } from "@chakra-ui/react"
+
 
 import { useFormik } from "formik";
 
@@ -40,6 +42,10 @@ export default function SideBarNavStack() {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 
+    const toast = useToast()
+
+
+
     const formik = useFormik({
 
 
@@ -57,7 +63,7 @@ export default function SideBarNavStack() {
 
 
 
-            await api.post('/mail', {
+            const response = await api.post('/mail', {
                 name,
                 email,
                 mesage
@@ -113,7 +119,7 @@ export default function SideBarNavStack() {
                     <ModalOverlay />
                     <ModalContent w='95%'>
                         <ModalHeader>Get in Contact</ModalHeader>
-                        <ModalCloseButton  />
+                        <ModalCloseButton />
 
 
 
@@ -171,7 +177,19 @@ export default function SideBarNavStack() {
                                 <Button mr={3} onClick={onClose}>
                                     Close
                                 </Button>
-                                <Button onClick={() => formik.handleSubmit()} colorScheme="blue" >Message me</Button>
+                                <Button onClick={() => {
+                                    formik.handleSubmit();
+
+                                    toast({
+                                        title: `Mesage sent. Thank you so much 😊`,
+                                        status: 'success',
+                                        duration: 4000,
+                                        isClosable: true,
+                                    })
+
+                                    onClose()
+
+                                }} colorScheme="blue"  >Message me</Button>
                             </ModalFooter>
                         </Flex>
 
