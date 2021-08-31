@@ -13,6 +13,7 @@ interface IProjects {
     project: string;
     image: string;
     description: string;
+    link?:string;
 }
 
 interface ICMSProps {

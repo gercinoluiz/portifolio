@@ -56,7 +56,7 @@ const WhatIKnow: React.FC<WhatIKnowProps> = ({ icons }: WhatIKnowProps) => {
         }}>
 
 
-            <Flex w='100%' id='MainFlex'  alignItems='center' justify='center'>
+            <Flex id='MainFlex'  alignItems='center' justify='center'>
                 <SimpleGrid   columns={[2, 3, 6,]}  justifyContent='center' gap={6}>
 
 
@@ -75,7 +75,7 @@ const WhatIKnow: React.FC<WhatIKnowProps> = ({ icons }: WhatIKnowProps) => {
                                             src={icon.image}
                                         />
 
-                                        <Text fontSize={isLargeText} mt='2' fontWeight='bold' >
+                                        <Text fontSize={isLargeText} mt='2' textAlign='center' fontWeight='bold' >
                                             {icon.title}
 
                                         </Text>

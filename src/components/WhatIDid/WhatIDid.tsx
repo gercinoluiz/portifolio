@@ -86,7 +86,7 @@ const WhatIDid: React.FC<WhatIDidProps> = ({ projects }: WhatIDidProps) => {
                                         {project.project}
 
                                     </Text>
-                                    <Flex justify='center' maxH='100px' align='center' textAlign='center' p='4'>
+                                    <Flex justify='center' maxH='100px' align='center' mb='5' textAlign='center' p='4'>
 
 
                                         <Text>{project.description}</Text>
@@ -94,7 +94,7 @@ const WhatIDid: React.FC<WhatIDidProps> = ({ projects }: WhatIDidProps) => {
 
                                     </Flex>
 
-                                    <Text ml='auto' mr='4' mb='2' fontWeight='bold' color='blue.500' >MORE</Text>
+                                    {/* <Text ml='auto' mr='4' mb='2' fontWeight='bold' color='blue.500' >MORE</Text> */}
                                 </Flex>
                             </Center>
                         )
