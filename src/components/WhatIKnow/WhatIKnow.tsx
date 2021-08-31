@@ -38,7 +38,7 @@ const WhatIKnow: React.FC<WhatIKnowProps> = ({ icons }: WhatIKnowProps) => {
 
     const isLargeText = useBreakpointValue({
         
-        lg: '25px',
+        lg: '22px',
         sm: '15px',
         md: '10x',
         
